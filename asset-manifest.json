@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/todolist/static/js/main.f707f82f.js",
+    "static/media/img2.jpg": "/todolist/static/media/img2.1cfe22bd3fa4e0a01466.jpg",
+    "static/media/img6.jpg": "/todolist/static/media/img6.b9320e951ae1cf7a4708.jpg",
+    "static/media/img3.jpg": "/todolist/static/media/img3.c956fdf06c8c4beeb7a6.jpg",
+    "static/media/img8.jpg": "/todolist/static/media/img8.2e9ab2562bd52533f8a1.jpg",
+    "static/media/img4.jpg": "/todolist/static/media/img4.869e9bdb068b214d0f07.jpg",
+    "static/media/img1.jpg": "/todolist/static/media/img1.f6082af678d61c65ba21.jpg",
+    "static/media/img7.jpg": "/todolist/static/media/img7.84bb07dacb128b089de0.jpg",
+    "static/media/img5.jpg": "/todolist/static/media/img5.65463369e7b0f089fd34.jpg",
+    "static/media/img9.jpg": "/todolist/static/media/img9.b388ead90afe0b081e9b.jpg",
+    "index.html": "/todolist/index.html",
+    "main.f707f82f.js.map": "/todolist/static/js/main.f707f82f.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.f707f82f.js"
+  ]
+}
