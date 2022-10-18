@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import { MdAdd } from "react-icons/md";
+import { useTodoDispatch, useTodoNextId } from "../TodoContext";
 
 const CircleButton = styled.button`
-  background: #38d9a9;
+  background: #DFD3C3;
   &:hover {
-    background: #63e6be;
+    background: #F8EDE3;
   }
   &:active {
-    background: #20c997;
+    background: #D0B8A8;
   }
 
   z-index: 5;
@@ -32,7 +33,7 @@ const CircleButton = styled.button`
   justify-content: center;
 
   transition: 0.125s all ease-in;
-  ${props =>
+  ${(props) =>
     props.open &&
     css`
       background: #ff6b6b;
@@ -46,7 +47,6 @@ const CircleButton = styled.button`
     `}
 `;
 
-
 const InsertFormPositioner = styled.div`
   width: 100%;
   bottom: 0;
@@ -55,7 +55,7 @@ const InsertFormPositioner = styled.div`
 `;
 
 const InsertForm = styled.form`
-  background: #f8f9fa;
+  background: #fbf9f7;
   padding-left: 32px;
   padding-top: 32px;
   padding-right: 32px;
@@ -78,15 +78,53 @@ const Input = styled.input`
 
 const TodoCreate = () => {
   const [open, setOpen] = useState(false);
+  const [value, setValue] = useState("");
+
+  const dispatch = useTodoDispatch();
+  const nextId = useTodoNextId();
 
   const onToggle = () => setOpen(!open);
+  const onChange = (e) => setValue(e.target.value);
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    dispatch({
+      type: "CREATE",
+      todo: {
+        id: nextId.current,
+        text: value,  
+        done: false,
+      },
+    });
+
+    fetch("http://localhost:4000/todos", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify({
+        id: nextId.current,
+        text: value,
+        done: false,
+      }),
+    });
+    
+    setValue("");
+    setOpen(false);
+    nextId.current += 1;
+  };
 
   return (
     <>
       {open && (
         <InsertFormPositioner>
-          <InsertForm>
-            <Input autoFocus placeholder="할 일을 입력 후, Enter 를 누르세요" />
+          <InsertForm onSubmit={onSubmit}>
+            <Input
+              autoFocus
+              placeholder="할 일을 입력하세요"
+              onChange={onChange}
+              value={value}
+            />
           </InsertForm>
         </InsertFormPositioner>
       )}
